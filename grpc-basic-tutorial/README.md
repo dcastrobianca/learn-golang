@@ -1,1 +1,0 @@
-go mod edit -replace example.com/greetings=../go-official-tutorial/greetings
