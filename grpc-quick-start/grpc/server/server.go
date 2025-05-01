@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 
+	"example.com/greetings"
 	pb "github.com/dcastrobianca/grpc/grpc/generated_code"
 	"google.golang.org/grpc"
 )
@@ -12,7 +13,8 @@ type greeterServer struct {
 }
 
 func (s *greeterServer) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello " + req.GetName()}, nil
+	msg, _ := greetings.Hello(req.GetName())
+	return &pb.HelloReply{Message: msg}, nil
 }
 
 func CreateServer() *grpc.Server {
